@@ -1,0 +1,450 @@
+
+<!-- Single Page Design Template -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- It's good practice for modern web design to include these meta tags  -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Single Page</title>
+
+        <style type="text/css">
+            html, body {
+                margin: 0;  /* remove any default spacing */
+                padding: 0; /* remove any default spacing */
+                min-width: 320px; /* don't want to the page titles to wrap */
+                font-family: monospace; 
+                overflow-x:hidden;
+            }
+            h1 { /* "hero style" page titles */
+                font-size: 3.0em; 
+            }
+            .sng-page {
+                min-height: 500px; /* fallout for older browsers */
+                min-height: 100vh;
+
+                /* Dont ask me why, but I was getting a white space between pages 
+                unless I had top and bottom borders, so I provided a 1 pixel border 
+                with color blank with 0 opacity (solidness). */
+                border-bottom: 1px solid rgba(0,0,0,0); 
+                border-top: 1px solid rgba(0,0,0,0); 
+                border-left: 15px solid rgba(0,0,0,0);
+            }
+            #title {
+                padding-top:10px;
+                padding-left:20px;
+                font-size:40px;
+                font-weight:bold;
+                letter-spacing: 1.5px;
+                text-align:center;
+                float:left;
+                color: #000000; 
+            }
+            #footer {
+
+                bottom: 0;
+                left: 0;
+                z-index: 2;
+                width: 100%;
+                background-color: #FAB31D;
+                color:#000000;
+                letter-spacing: 0.1ex;
+                text-align: center;
+                font-weight: bold;
+                font-size: 18px;
+                padding: 12px;
+            }
+            #footer a {
+                text-decoration: none;
+                color:#000000;
+            }
+            #footer a:hover {
+                color: white;
+            }
+
+            /* colors to differentiate the pages */
+            #home {
+                text-align:center;
+                color:white;
+                background-color: #222222;                
+            } 
+            #info {
+                background-color: #222222;
+            }
+            #form {
+                background-color: #FAB31D;
+            }
+            #titleNav {
+                color: white;
+                background-color:#FAB31D;
+                height: 75px;
+                min-width:600px; 
+            }          
+            #nav {
+                position:fixed;
+                top:0px;
+                right:0px;
+                z-index:2;
+
+                font-size:22px;
+                letter-spacing: 1px;
+                font-weight:bold;
+                text-align:center;
+
+                background-color: #FAB31D;
+
+            }
+            .navLink {
+                width:100px;
+                border-bottom: thin solid gray;
+                padding: 4px;
+                display: block;
+                box-sizing: border-box;
+            }
+            #nav a {
+                color: #000000;
+                margin-left:5px; 
+            }
+            a {
+                text-decoration:none;  
+            }
+            .center {
+                margin: auto;
+                width: 30%;
+                padding: 10px; 
+            }
+            .container {
+                background-color: #FAB31D;
+            }
+            .column33 {
+                /* border:thin solid red; */
+                width: 100%;
+                padding: 15px;
+                background-color: #222222;
+                color: white;
+                margin: 5px 0%;  /* 1st is top/bottom, 2nd is left/right */
+                box-sizing: border-box; /* gets rid of horizontal scroll bar, counts padding and border in box size */
+            }
+            .one-to-two-form {
+                width: 90%;
+                padding: 15px 15px;
+                background-color: white;
+                color: black;
+                margin: 5px 0%; 
+                box-sizing: border-box;
+            }
+            .required {
+                color:red;
+            }
+            #navGroup {
+                display: none; 
+            }
+            #navIcon {
+                padding-top: 18px;
+                width:100px;
+                box-sizing: border-box;
+                display: block;
+            }
+            /* ------------ Desktop Only Styles --------------- */
+            @media screen and (min-width: 600px) {
+
+                .container {
+                    background-color:  #FAB31D;
+                    padding: 0px 15px;
+                }
+                .column33 {
+                    background-color: rgba(0,0,0,0);
+                    padding: 5px 15px; /* 1st is top/bottom, 2nd is left/right */
+                    width: 32%;
+                    box-sizing:border-box;
+                    margin: 0px 0.5%;  /* 1st is top/bottom, then left/right. 
+                                       If each element is 32% and has 0.5% on left and right, 
+                                       the total will add up to 99% for three */
+                    float: left;
+                }
+                .clear {
+                    clear:both;
+                }
+                .one-to-two-form {
+
+                    padding: 16px 16px; /* 1st is top/bottom, 2nd is left/right */
+                    width: 48.9%;
+                    margin: 0px 0.5%;  /* make the width of the 3 elements plus margins total 100% */
+                    float: left;
+                    border: 2px solid black;
+                }
+                .navLink{
+                    display:inline;
+                    border:none;
+                    border-right: thin solid gray;
+                }
+                #navGroup {
+                    display:block;
+                    padding-top: 29px;
+                }
+                #navIcon {
+                    display:none;
+                }
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="titleNav">
+            <div id="title">
+                Active Honey Pot
+            </div>
+            <div id="nav">
+                <div id="navIcon" onclick="iconClicked()">
+                    <img src="../pics/hplogo.png" alt="Logo" width="43"/>
+                </div>
+                <div id="navGroup">
+                    <div class="navLink"><a href="#home">Home</a></div>
+                    <div class="navLink"><a href="#info">Info</a></div>
+                    <div class="navLink"><a href="#form">Form</a></div>
+                    <div class="navLink"><a href="../labs.html">Labs</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 1 -->
+        <div id="home" class="sng-page">
+
+            <img class="center" style="padding-top:140px;width:30%" src="../pics/hplogo2.png" alt="Logo">
+
+            <h1 style="font-size:20px;font-weight: bold">
+                An active solution to cyber security attacks on your network. 
+            </h1>
+            <p>
+                Get real-time access to security threats with ease. 
+            </p>
+        </div>
+
+        <!-- Page 2 -->
+
+        <div id="info" class="sng-page" style="border-left:0px;">
+            <div class="container">
+                <h1 style="padding-top:20px;padding-left:15px">What is a Honeypot?</h1>
+                <div class="column33">                  
+                    <img class="center" style="padding-top:10px;width:100%" src="../pics/fig2.jpg" alt="Figure">
+                    <p>
+                        In computer terminology, a honeypot is a computer security mechanism set to detect, deflect, or, in some manner, 
+                        counteract attempts at unauthorized use of information systems. Generally, a honeypot consists of data 
+                        (for example, in a network site) that appears to be a legitimate part of the site, but is actually isolated and monitored, 
+                        and that seems to contain information or a resource of value to attackers, who are then blocked. This is similar to police 
+                        sting operations, colloquially known as "baiting," a suspect.
+                    </p>
+                </div>
+                <div class="column33">
+                    <img class="center" style="padding-top:10px;width:100%" src="../pics/fig1.png" alt="Figure">
+                    <p>
+                        Here is an example of a honeypot shadowing the original network in case of a cyber attack. 
+                    </p>
+                </div>
+                <div class="column33">
+                    <img class="center" style="padding-top:10px;width:100%" src="../pics/fig3.png" alt="Figure">
+                    <p>                       
+                        When an attack is carried out on your network the data gets recorded in our database and presented to you in real time.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3 -->
+        <div id="form" class="sng-page">
+            <h1>Learn more about Cyber Security today</h1>
+            <div class="container">
+                <form name="myForm" method="post" action="http://www.temple.edu/cgi-bin/mail?tuf62546@temple.edu" >          
+                    <div class="one-to-two-form">
+
+                        Enter your email: <input type="text" name="emailToSubscribe" placeholder="email@temple.edu" required/><br/> <br/>
+                        Would you like to subscribe to be informed about recent breakthroughs in cyber security? <input type="radio" name="Y/N" value="Y"  >   Yes    
+                        <input type="radio" name="Y/N"  value="N"  />    No  <br/> <br/>
+                        How familiar  are you with cyber attacks?
+                        <select name="familiarity" >
+                            <option value="not at all" selected="selected">not at all</option>
+                            <option value="very little">very little</option>
+                            <option value="somewhat informed">somewhat informed</option>
+                            <option value="informed">informed</option>
+                            <option value="very informed">very informed</option>
+                        </select>     <br/> <br/>
+                        How many years you been involved involved in cyber security? <input type="number" name="securityExperience" placeholder="0 years" /> <br/> <br/>
+                    </div>
+                    <div class="one-to-two-form">
+
+                        Will you visit this website in the future?
+                        <label class="container">Not likely
+                            <input type="checkbox" checked="checked">
+                            <span ></span>
+                        </label>
+                        <label class="container">Maybe
+                            <input type="checkbox">
+                            <span ></span>
+                        </label>
+                        <label class="container">Definitely
+                            <input type="checkbox">
+                            <span ></span>
+                        </label><br/> <br/> 
+                        Comments or Suggestions? <br/> 
+                        <textarea name="inputcomments" cols="30" rows="5" >Type here...</textarea> <br/> <br/>
+                        <input type="submit" value="Submit!" style="background-color:#FAB31D; color: #222222; 
+                               padding: 8px; border: 2px solid black; border-radius: 2px" />
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <footer id="footer">
+            &copy;  <a href="http://temple.edu">Temple</a> 
+            (external link)
+        </footer>
+
+        <!-- Jquery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+
+                    // Wait until all elements exist on the page before trying to reference anything ...
+                    $(document).ready(function () {
+
+                        // $('a[href^="#"]') --> thia selector applies to all <a> elements with a href attribute that starts with "#".
+                        //    Learned this from   http://www.w3schools.com/jquery/jquery_ref_selectors.asp
+                        $('a[href^="#"]').click(function () {
+
+                            // "this" means the element involved in the event, so, the link that was clicked.
+                            console.log("this");
+                            console.log(this); // if you console.log an object, you'll see nice tree view
+                            // of the object's properties in the console (F12 from Chrome)
+                            console.log("-");
+
+                            // ".hash" refers to the href attribute of the <a> tag. So, if <a href="#page1">
+                            // was clicked, then "this.hash" has this value: "#page1"
+                            console.log("this.hash");
+                            console.log(this.hash);
+                            console.log("-");
+
+                            // $ is a jQuery function which returns a jQuery object that references the
+                            // specified HTML element. For example, $("#content") returns a jQuery
+                            // object that references the HTML element with id="content". This object also has
+                            // loads of contextual information (e.g., parent, siblings, and many other properties.
+
+                            // So, variable "target" references a jQuery object that the user clicked. 
+                            var target = $(this.hash);
+                            console.log("$(this.hash)");
+                            console.log(target);
+                            console.log("-");
+
+                            // This if statement will run if target.length exists.
+                            if (target.length) {
+
+                                // animate is a jQuery function (what_to_do, how_fast_in_millisecs). 
+                                // "what_to_do" is an object with any number of CSS property/value pairs:
+                                /*
+                                 * $("button").click(function(){
+                                 $("div").animate({
+                                 left: '250px',
+                                 opacity: '0.5',
+                                 height: '150px'
+                                 },500);
+                                 }); 
+                                 */
+                                // 
+                                // scrollTop is a javaScript property of any DOM element. 
+                                // It measures the number of pixels from the DOM element to the top of 
+                                // of the DOM element's scrollable parent element.
+                                //           see http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_scrollleft
+                                // 
+                                // .offset() is a function (of any jQuery object) that returns an object with 
+                                // top and left properties (top/left relative to the document).
+
+                                $('html, body').animate({
+                                    // set the scrollTop property (of the browser)
+                                    // to be the top attribute of the element being linked to
+                                    scrollTop: target.offset().top
+                                }, 900);  // but do it a bit slow (900 millisecs)
+                            }
+
+                        });
+
+                    });
+
+                    $("h1").mouseenter(function () {
+                        $(this).animate({
+                            opacity: '1',
+                            fontSize: '3em'
+                        });
+                    });
+
+
+                    $("h1").mouseleave(function () {
+                        $(this).animate({
+                            opacity: '0.85',
+                            fontSize: '2em'
+                        });
+                    });
+
+
+                    // returns a reference to the HTML element with the given id
+                    function my$(id) {
+                        return document.getElementById(id);
+                    }
+
+                    // This function is invoked whenever the navIcon is clicked -- because of the 
+                    // <div id="navIcon" onclick="iconClicked()"> tag in the HTML.
+                    function iconClicked() {
+                        var navGroup = my$("navGroup");
+                        var navDisplay = getComputedStyle(navGroup).display;
+                        if (navDisplay === "block") {
+                            my$("navGroup").style.display = "none";
+                        } else {
+                            my$("navGroup").style.display = "block";
+                        }
+                        console.log("icon Clicked. navGroup is " + my$("navGroup").style.display);
+                    }
+
+                    // Global declarations **************************************************
+                    var navIcon = my$("navIcon"); // reference to the "navIcon" div
+
+                    // This is the initial display attribute (block or none) - depends on the 
+                    // size of browser at page refresh time. 
+                    // I had to use getComputedStyle (per internet search) rather than just 
+                    // navIcon.style.display because the initial setting is set by CSS not javaScript.
+                    var iconDisplay = getComputedStyle(navIcon).display;
+                    console.log("initial iconDisplay is " + iconDisplay);
+
+                    // We want to have certain behavior when the browser first "gets small" 
+                    // (converts to mobile layout) and when the browser first "gets big" 
+                    // (converts to desktop layout). So we have to track the previous value 
+                    // as well as the current value.
+                    var previousIconDisplay = iconDisplay;
+                    // End of Global declarations **************************************************
+
+
+                    // This function is invoked whenever the browser is resized -- because of the 
+                    // <body> tag in the HTML: <body onresize="resize()">
+                    function resize() {
+                        previousIconDisplay = iconDisplay;
+                        iconDisplay = getComputedStyle(navIcon).display;
+                        console.log("resized. iconDisplay is " + iconDisplay);
+
+                        if (iconDisplay === "none" && previousIconDisplay === "block") {
+                            console.log("sized big - show nav group");
+                            my$("navGroup").style.display = "block";
+
+                        }
+                        if (iconDisplay === "block" && previousIconDisplay === "none") {
+                            console.log("sized small - hide nav group");
+                            my$("navGroup").style.display = "none";
+                        }
+                    }
+
+
+
+                    // This function is invoked whenever the browser is resized -- because of the 
+                    // <body> tag in the HTML: <body onresize="resize()">
+
+        </script>
+    </body>
+</html>

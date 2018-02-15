@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Labs</title>
+
+        <!-- Use this type of comment within HTML -->
+
+        <!-- If you want to use any Angular code (like the angular include, you 
+        must include a reference to the Angular JS library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+        <!-- This is a reference to an external style sheet, many pages can point to one -->
+        <link href="myStyle.css" rel="stylesheet" type="text/css" />  
+
+        <style>
+            /* 
+              This is called an internal style sheet. Put styles in here that 
+              you need for this specific page. These styles will overwrite whatever
+              is in your external style sheet above.
+
+              Use ONLY this (slash/star) )type of comment inside a style sheet. Other types 
+              (like double slash) do not work.  
+            */
+        </style>
+    </head>
+    <body>
+
+        <div ng-app="">  <!-- inside this div you can use Angular directives -->     
+
+            <div ng-include src="'top.html'"> </div> <!-- will insert "top.html" code here -->  
+
+            <div id="content">
+                <h3><a href="index.html">Lab 1: Home Page</a></h3>
+                <p>
+                    I had no real experience using HTML, CSS, javascript/jquery, or any client side frameworks before taking this class.
+                </p>
+                <p>
+                    The advanced techniques that I used for this lab were rounded corners on the two images on 
+                    the right and transparency on the image at the bottom of the page.
+                </p>
+
+                <p>
+                    This lab taught me a lot of basics for CSS and HTML like syntax, classes, and ids. It also taught me what AngularJS does.
+                </p>
+                <h3><a href="02_advLayout/index.html">Lab 2: Advanced Layout</a></h3>
+                <p>
+                    It was interesting learning about responsive design. I had no idea what jQuery was used for until this lab. 
+                    Most of this lab was easy up until I had to put in the collapsible nav bar. 
+                    It was tricky having to play around with the default mobile phone view vs desktop view for the nav bar. 
+                    I think the most interesting things I learned in this lab were seeing 
+                    jQuery and javascript in action and trying to understand what each line of code was doing for my page. 
+                </p>
+                <h3><a href="03_js_intro/index.html">Lab 3: JavaScript Intro</a></h3>
+                <p>
+                    Object oriented JavaScript was very easy considering I'm a senior now with a lot of java experience. 
+                    The only part of this lab that I struggled with was trying to get the sorting function to work. I didn't think we had to modify the code originally, 
+                    but I ended up modifying it and using getters to access the private properties of my object. After I figured that out, the rest was easy.
+                    This lab taught me the basics of Object Oriented JavaScript. 
+                </p>
+                <!--                <h3>Lab 4: Advanced JavaScript</h3>
+                                                <p>
+                                                    Fill in your blog (see lab writeup for what to put here).
+                                                </p>
+                                                <h3>Lab 5: Database</h3>
+                                                <p>
+                                                    Fill in your blog  (see lab writeup for what to put here).
+                                                </p>
+                                                <h3>-- TUTORIAL --</h3>
+                                                <p>
+                                                    Fill in your blog  (see lab writeup for what to put here).
+                                                </p>
+                                                <h3>Lab 6: Web APIs and AJAX</h3>
+                                                <p>
+                                                    Fill in your blog  (see lab writeup for what to put here).
+                                                </p>
+                                
+                                                <h3>Labs 7-9: AngularJS Triple Lab</h3>
+                                                <p>
+                                                    Fill in your blog  (see lab writeup for what to put here).
+                                                </p>-->
+            </div> <!-- end of content. [[Keep track of nesting]] -->
+
+            <div ng-include src="'bottom.html'"> </div> <!-- will insert "top.html" code here -->  
+
+        </div> <!-- end of the ng-app div -->
+
+    </body>
+</html>

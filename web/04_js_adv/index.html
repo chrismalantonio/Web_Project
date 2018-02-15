@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LoL Champions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link href="../myStyle.css" rel="stylesheet" type="text/css" />
+        <style>
+            #champListDiv {
+                background-color:#D95E89;
+                margin: 1em;
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <body ng-app="">
+
+        <div ng-include src="'top.html'"> </div>
+        <div id="content">
+            <h2>A list of League of Legends Champions</h2>
+
+            <input type="button" onclick ="sortByName()" value="Name Sort"/>
+            <input type="button" onclick ="sortByRole()" value="Role Sort"/>
+            <input type="button" onclick ="sortByPlayRate()" value="Play Rate Sort"/>
+            <div id="champListDiv"></div>
+
+            Which Champion? <input type="text" id="whichObject"/><br/>
+            <button onclick="updateName()">Edit Name</button> <input type="text" id="nameTextBox"/><br/>
+            <button onclick="updateRole()">Change Role</button> <input type="text" id="roleTextBox"/><br/>
+            <button onclick="updatePlayRate()">Update Play Rate </button> <input type="text" id="PlayRateTextBox"/><br/>
+            <button onclick="addNewChamp()">New Champion Name</button> <input type="text" id="newChampTextBox"/><br/>
+
+            <br/><br/>
+
+            <div id="message"></div>
+
+            <!-- This basically copy/pastes the code from the js file into this file. -->
+            <script src="listObject.js"></script>
+            <script src="sort.js"></script>
+
+            <script>
+
+                // prevents a misspelled variable from getting auto-declared.
+                "use strict";
+
+                function updateName() {
+                    //console.log("updating name");
+                    var which = Number(document.getElementById("whichObject").value);
+                    //console.log("which is "+which);
+                    if (isNaN(which) || (which < 0) || (which > championList.length)) {
+                        document.getElementById("message").innerHTML = "Invalid champion (outside of list boundaries)";
+                        return;
+                    } else {
+                        var champName = document.getElementById("nameTextBox").value;
+                        championList[which].setName(champName);
+                        document.getElementById("message").innerHTML = "Champion " + which + " - name updated.";
+                        refreshChampionList();
+                    }
+                }
+
+                function updateRole() {
+                    //console.log("updating name");
+                    var which = Number(document.getElementById("whichObject").value);
+                    //console.log("which is "+which);
+                    if (isNaN(which) || (which < 0) || (which > championList.length)) {
+                        document.getElementById("message").innerHTML = "Invalid champion (outside of list boundaries)";
+                        return;
+                    } else {
+                        var champRole = document.getElementById("roleTextBox").value;
+                        championList[which].setRole(champRole);
+                        document.getElementById("message").innerHTML = "Champion " + which + " - role updated.";
+                        refreshChampionList();
+                    }
+                }
+
+                function updatePlayRate() {
+                    var which = Number(document.getElementById("whichObject").value);
+                    if (isNaN(which) || (which < 0) || (which > championList.length)) {
+                        document.getElementById("message").innerHTML = "Invalid champion (outside of list boundaries)";
+                        return;
+                    } else {
+                        var givenNumber = document.getElementById("PlayRateTextBox").value;
+                        championList[which].setPlayRate(givenNumber);
+                        document.getElementById("message").innerHTML = "Champion " + which + " - Play Rate modified.";
+                        refreshChampionList();
+                    }
+                }
+
+                function addNewChamp() {
+                    var name = document.getElementById("newChampTextBox").value;
+                    championList.add(name, "Fill", 0);
+                    document.getElementById("message").innerHTML = "New Champion (" + (championList.length - 1) + ") " + name + " added.";
+                    refreshChampionList();
+                }
+
+                function refreshChampionList() {
+                    document.getElementById("champListDiv").innerHTML = championList.showList();
+                }
+
+                function sortByName() {
+                    console.log("to sort by name");
+                    sortByKey(championList, "getName()");
+                    refreshChampionList();
+                }
+
+                function sortByRole() {
+                    console.log("to sort by role");
+                    sortByKey(championList, "getRole()");
+                    refreshChampionList();
+                }
+
+                function sortByPlayRate() {
+                    console.log("to sort by play rate");
+                    sortByKey(championList, "getPlayRate()");
+                    refreshChampionList();
+                }
+
+                // Main program
+                debugger;
+                var championList = makeChampionList();
+                championList.add("Fiora", "Top", 5);
+                championList.add("Evelynn", "Jungle", 21);
+                championList.add("Azir", "Middle", 7);
+                championList.add("Braum", "Support", 2.4);
+                championList.add("Sona", "Support", 0.8);
+
+                document.getElementById("champListDiv").innerHTML = championList.showList();
+
+            </script>
+        </div>
+        <div ng-include src="'../bottom.html'"></div>
+
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cookie Example</title>
+        <style type="text/css">
+            body{ background-color:beige;}
+            div {
+                padding:1em;
+            }
+            hr {
+                margin-top: 1em;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Cookie Demo</h2>
+        <h4>Important Fact - MUST test locally using Firefox</h4>
+        <ul>
+            <li>
+                Cookies do not work in chrome when testing locally. 
+            </li>
+            <li>
+                If you get cookies to work locally with Firefox then 
+                publish, your published cookie code should work from Firefox AND Chrome.
+            </li>
+        </ul>
+        <br/>
+        <div>
+            <form name="myForm"> 
+                <div>
+                    Cookie Name:
+                    <input type="text" name="cookieName">
+                    &nbsp;&nbsp;
+                    Cookie Value:
+                    <input type="text" name="cookieValue">
+
+                    &nbsp;&nbsp;
+                    Days to live (-1 deletes):
+                    <input type="text" name="cookieDays" size="5">
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="button" value="Add Name/Value Pair to Cookie" 
+                           onClick="javascript:createCookie(document.myForm.cookieName.value,
+                                           document.myForm.cookieValue.value,
+                                           document.myForm.cookieDays.value)">
+                </div>
+                <hr/>
+                <div>
+                    Cookie Name:
+                    <input type="text" name="cookieName2">
+                    &nbsp;&nbsp;
+                    <input type="button" value="Show Value of Given Name" 
+                           onClick="javascript:showCookie(document.myForm.cookieName2.value)">
+                </div>
+                <hr/>
+                <div>
+                    <input type="button" value="Show Entire Cookie-all Name/Value Pairs" 
+                           onClick="alert('cookie is: ' + document.cookie);">
+                </div>
+            </form>
+        </div>
+        <script src="cookie_demo.js"></script>
+        <script>
+                               debugger;
+        </script>
+    </body>
+</html>

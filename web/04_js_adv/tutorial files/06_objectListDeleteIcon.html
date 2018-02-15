@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .empClass {
+                background-color:lightgreen;
+                margin: 1em;
+                padding: 1em;
+                width: 400px;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Employee Object List with Delete</h2>
+
+        <div id="message"></div>
+
+        <div id="empListDiv"></div>
+
+        <script src="06_objectListDeleteIcon.js"></script>
+
+        <script>
+
+            // prevents a misspelled variable from getting auto-declared.
+            "use strict";
+
+            // Main program
+            //debugger;
+            var empList = makeEmpList("empListDiv", "empClass", "message");
+            empList.add("Sally Kyver", 25000);
+            empList.add("Fred Flintsone", 50000);
+            empList.add("Barney Rubble", 40000);
+            empList.add("Bat Man", 90000);
+            empList.add("Cat Woman", 35000);
+
+        </script>
+    </body>
+</html>

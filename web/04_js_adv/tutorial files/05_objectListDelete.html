@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #empListDiv {
+                background-color:lightgreen;
+                margin: 1em;
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Employee Object List with Delete</h2>
+
+        <div id="empListDiv"></div>
+
+        <button onclick="deleteEmp()">Delete Employee</button>
+        <input type="text" id="whichEmployee"/>  (specify employee number)
+        
+        <br/><br/>
+        
+        <div id="message"></div>
+
+        <script src="05_objectListDelete.js"></script>
+
+        <script>
+
+            // prevents a misspelled variable from getting auto-declared.
+            "use strict";
+
+            function deleteEmp() {
+                var whichEmpToDelete = document.getElementById("whichEmployee").value;
+                var message = empList.delete(whichEmpToDelete);
+                document.getElementById("message").innerHTML = message;
+                refreshList();
+            }
+
+            function refreshList() {
+                document.getElementById("empListDiv").innerHTML = empList.showList();
+            }
+
+
+            // Main program
+            //debugger;
+            var empList = makeEmpList();
+            empList.add("Sally Kyver", 25000);
+            empList.add("Fred Flintsone", 50000);
+            empList.add("Barney Rubble", 40000);
+            empList.add("Bat Man", 90000);
+            empList.add("Cat Woman", 35000);
+
+            refreshList();
+
+        </script>
+    </body>
+</html>

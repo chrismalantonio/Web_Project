@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #empListDiv {
+                background-color:lightgreen;
+                margin: 1em;
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Object that is a List of Employee Objects</h2>
+
+        <div id="empListDiv"></div>
+
+        Which Employee? <input type="text" id="whichEmployee"/><br/>
+        <button onclick="updateName()">New Name</button> <input type="text" id="nameTextBox"/><br/>
+        <button onclick="modifySalary()">Salary Change Pct</button> <input type="text" id="salaryChangePctTextBox"/>
+
+        <br/><br/>
+
+        <div id="message"></div>
+
+        <script src="04_listObject.js"></script>
+
+        <script>
+
+            // prevents a misspelled variable from getting auto-declared.
+            "use strict";
+
+            function updateName() {
+                //console.log("updating name");
+                var which = Number(document.getElementById("whichEmployee").value);
+                //console.log("which is "+which);
+                if (isNaN(which) || (which < 0) || (which > empList.length)) {
+                    document.getElementById("message").innerHTML = "Invalid employee (outside of list boundaries)";
+                    return;
+                } else {
+                    var newName = document.getElementById("nameTextBox").value;
+                    empList[which].setName(newName);
+                    document.getElementById("message").innerHTML = "Employee " + which + " - name updated.";
+                    document.getElementById("empListDiv").innerHTML = empList.showList();
+                }
+            }
+
+            function modifySalary() {
+                var which = Number(document.getElementById("whichEmployee").value);
+                if (isNaN(which) || (which < 0) || (which > empList.length)) {
+                    document.getElementById("message").innerHTML = "Invalid employee (outside of list boundaries)";
+                    return;
+                } else {
+                    var changePct = document.getElementById("salaryChangePctTextBox").value;
+                    empList[which].changeSalary(changePct);
+                    document.getElementById("message").innerHTML = "Employee " + which + " - salary modified.";
+                    document.getElementById("empListDiv").innerHTML = empList.showList();
+                }
+            }
+
+
+            // Main program
+            debugger;
+            var empList = makeEmpList();
+            empList.add("Sally Kyver", 25000);
+            empList.add("Fred Flintsone", 50000);
+            empList.add("Barney Rubble", 40000);
+
+            document.getElementById("empListDiv").innerHTML = empList.showList();
+
+        </script>
+    </body>
+</html>
