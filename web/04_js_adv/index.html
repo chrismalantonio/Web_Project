@@ -45,6 +45,7 @@
             <br/><br/>
             <button onclick="writeChamps()">Write List to Cookie</button> &nbsp;
             <button onclick="readChamps()">Read List from Cookie</button> &nbsp;
+            <button onClick="alert('cookie is: ' + document.cookie);">Show Entire Cookie</button>
             <br/><br/>
 
             <!-- This basically copy/pastes the code from the js file into this file. -->
@@ -137,12 +138,13 @@
                         playRate: championList[i].getPlayRate()
 
                     };
-                    newChampList[newChampList.length] = newChamp;
+                    newChampList[i] = newChamp;
                 }
 
 
                 function writeChamps() {
                     //write private object list into a new public object list 
+                    newChampList = [];
                     for (var i = 0; i < championList.length; i++) {
                         addChamp(Number(i));
                     }
@@ -171,8 +173,6 @@
                 championList.add("Azir", "Middle", 7);
                 championList.add("Braum", "Support", 2.4);
                 championList.add("Sona", "Support", 0.8);
-
-                //championList.showList();
 
             </script>
         </div>
