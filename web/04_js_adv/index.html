@@ -41,12 +41,16 @@
             <button onclick="updateRole()">Change Role</button> <input type="text" id="roleTextBox"/><br/>
             <button onclick="updatePlayRate()">Update Play Rate </button> <input type="text" id="PlayRateTextBox"/><br/>
             <button onclick="addNewChamp()">New Champion Name</button> <input type="text" id="newChampTextBox"/><br/>
-
+            <button onclick="printChamps()">Print List</button> &nbsp;
+            <br/><br/>
+            <button onclick="writeChamps()">Write List to Cookie</button> &nbsp;
+            <button onclick="readChamps()">Read List from Cookie</button> &nbsp;
             <br/><br/>
 
             <!-- This basically copy/pastes the code from the js file into this file. -->
             <script src="listObject.js"></script>
             <script src="sort.js"></script>
+            <script src="Cookie.js"></script>
 
             <script>
 
@@ -123,6 +127,40 @@
                     console.log("to sort by play rate");
                     sortByKey(championList, "getPlayRate()");
                     refreshChampionList();
+                }
+
+                var newChampList = [];
+                function addChamp(i) {
+                    var newChamp = {
+                        name: championList[i].getName(),
+                        role: championList[i].getRole(),
+                        playRate: championList[i].getPlayRate()
+
+                    };
+                    newChampList[newChampList.length] = newChamp;
+                }
+
+
+                function writeChamps() {
+                    //write private object list into a new public object list 
+                    for (var i = 0; i < championList.length; i++) {
+                        addChamp(Number(i));
+                    }
+                    Cookie.setCookieObj("myChampions", newChampList, 365);
+                }
+
+                function printChamps() {
+                    for (var i = 0; i < championList.length; i++) {
+                        championList[i].setName(newChampList[i].name);
+                        championList[i].setRole(newChampList[i].role);
+                        championList[i].setPlayRate(newChampList[i].playRate);
+                    }
+                    refreshChampionList();
+                }
+
+                function readChamps() {
+                    championList = Cookie.getCookieObj("myChampions");
+                    printChamps();
                 }
 
                 // Main program

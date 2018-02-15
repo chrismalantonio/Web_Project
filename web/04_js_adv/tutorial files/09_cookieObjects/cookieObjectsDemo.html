@@ -55,14 +55,29 @@
             }
 
             function writeFriends() {
-                Cookie.setCookieObj("myFriends", friendList, 365);
+                //Cookie.setCookieObj("myFriends", friendList, 365);
+                //write private object list into a new public object list 
+                var newChampList = [];
+                function addChamp(i) {
+                    var newChamp = {
+                        name: championList[i].getName(),
+                        role: championList[i].getRole(),
+                        playRate: championList[i].getRole()
+
+                    };
+                    newChampList[newChampList.length] = newChamp; 
+                }
+                for (var i = 0; i < championList.length; i++) {
+                    addChamp(Number(i)); 
+                }
+                Cookie.setCookieObj("myChampions", newChampList, 365);
             }
 
             function readFriends() {
-                friendList = Cookie.getCookieObj("myFriends");
+                friendList = Cookie.getCookieObj("myChampions");
                 printFriends();
             }
-            
+
             printFriends();
 
         </script>
