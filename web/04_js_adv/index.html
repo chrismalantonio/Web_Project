@@ -7,10 +7,18 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <link href="../myStyle.css" rel="stylesheet" type="text/css" />
         <style>
-            #champListDiv {
+            /*            #champListDiv {
+                            background-color:#D95E89;
+                            margin: 1em;
+                            padding: 1em;
+                        }*/
+
+            .champClass {
                 background-color:#D95E89;
                 margin: 1em;
                 padding: 1em;
+                width: 400px;
+                border-radius: 8px;
             }
         </style>
     </head>
@@ -23,6 +31,9 @@
             <input type="button" onclick ="sortByName()" value="Name Sort"/>
             <input type="button" onclick ="sortByRole()" value="Role Sort"/>
             <input type="button" onclick ="sortByPlayRate()" value="Play Rate Sort"/>
+
+            <div id="message"></div>
+
             <div id="champListDiv"></div>
 
             Which Champion? <input type="text" id="whichObject"/><br/>
@@ -32,8 +43,6 @@
             <button onclick="addNewChamp()">New Champion Name</button> <input type="text" id="newChampTextBox"/><br/>
 
             <br/><br/>
-
-            <div id="message"></div>
 
             <!-- This basically copy/pastes the code from the js file into this file. -->
             <script src="listObject.js"></script>
@@ -95,7 +104,7 @@
                 }
 
                 function refreshChampionList() {
-                    document.getElementById("champListDiv").innerHTML = championList.showList();
+                    championList.showList();
                 }
 
                 function sortByName() {
@@ -117,15 +126,15 @@
                 }
 
                 // Main program
-                debugger;
-                var championList = makeChampionList();
+                //debugger;
+                var championList = makeChampionList("champListDiv", "champClass", "message");
                 championList.add("Fiora", "Top", 5);
                 championList.add("Evelynn", "Jungle", 21);
                 championList.add("Azir", "Middle", 7);
                 championList.add("Braum", "Support", 2.4);
                 championList.add("Sona", "Support", 0.8);
 
-                document.getElementById("champListDiv").innerHTML = championList.showList();
+                //championList.showList();
 
             </script>
         </div>
