@@ -41,7 +41,6 @@
             <button onclick="updateRole()">Change Role</button> <input type="text" id="roleTextBox"/><br/>
             <button onclick="updatePlayRate()">Update Play Rate </button> <input type="text" id="PlayRateTextBox"/><br/>
             <button onclick="addNewChamp()">New Champion Name</button> <input type="text" id="newChampTextBox"/><br/>
-            <button onclick="printChamps()">Print List</button> &nbsp;
             <br/><br/>
             <button onclick="writeChamps()">Write List to Cookie</button> &nbsp;
             <button onclick="readChamps()">Read List from Cookie</button> &nbsp;
@@ -161,12 +160,12 @@
                 }
 
                 function readChamps() {
-                    championList = Cookie.getCookieObj("myChampions");
+                    newChampList = Cookie.getCookieObj("myChampions");
                     printChamps();
                 }
 
                 // Main program
-                //debugger;
+
                 var championList = makeChampionList("champListDiv", "champClass", "message");
                 championList.add("Fiora", "Top", 5);
                 championList.add("Evelynn", "Jungle", 21);
