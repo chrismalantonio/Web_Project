@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cloud 9</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="reuseFwStyle.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="titleNav">
+            <div id="pageTitle">
+                Cloud 9
+            </div>
+            <div id="nav">
+                <div class="menuGroup">
+                    <div onclick="" class="menuHeading">
+                        Team
+                    </div>
+                    <div class="ddMenu">
+                        <div onclick="linkTo('aboutLicorice.html')">
+                            Licorice
+                        </div>
+                        <div onclick="linkTo('aboutSvenskeren.html')">
+                            Svenskeren
+                        </div>
+                        <div onclick="linkTo('aboutJensen.html')">
+                            Jensen
+                        </div>
+                        <div onclick="linkTo('aboutSneaky.html')">
+                            Sneaky
+                        </div>
+                        <div onclick="linkTo('aboutSmoothie.html')">
+                            Smoothie
+                        </div>
+                    </div> <!-- ddMenu -->
+                </div> <!-- menuGroup -->
+
+                <div class="menuGroup">
+                    <div class="menuHeading">
+                        Rivals
+                    </div>
+                    <div class="ddMenu">
+                        <div onclick="linkTo('aboutTSM.html')">
+                            TSM
+                        </div>
+                        <div onclick="linkTo('aboutCLG.html')">
+                            CLG
+                        </div>
+                    </div> <!-- ddMenu -->
+                </div> <!-- menuGroup -->
+                <a href="../labs.html" class="menuGroup">
+                    Labs
+                </a> <!-- menuGroup -->
+            </div>  <!-- nav -->
+            <span class="stopFloat"></span>
+        </div> <!-- titleNav -->
+
+        <div id="content">
+            <h3>About Cloud 9</h3>
+            Cloud9 (C9) is a North American eSports team formed by the former roster of Quantic Gaming 
+            following its dissolution. The team currently competes under the name Cloud9 G2A, in representation 
+            of their sponsor G2A. Aside from League of Legends, the organization also has divisions for DotA 2, 
+            COD, Hearthstone: Heroes of Warcraft, Super Smash Bros, Counter Strike: Global Offensive, Overwatch, and Vainglory.
+        </div>
+
+        <script src="reuseFw.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+                            var reuseObj = MakeReuseFw("content"); // this should be a div in the <body>
+                            function linkTo(snippetFileName) {
+                                reuseObj.linkTo(snippetFileName);
+                            }
+
+                            $(document).ready(function () {
+
+                                $(".menuHeading").click(function () {  // after nav bar icon is group of menu options. 
+                                    $(this).next().toggle(); // hide if showing, show if hiding. 
+                                });
+                            });
+
+        </script>
+    </body>
+</html>
