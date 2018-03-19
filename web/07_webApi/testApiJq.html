@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Get Champions (ajax demo)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <style type="text/css">
+            body {
+                background-image: url("../pics/lolbg.jpg");
+                background-size: auto;
+                color:white;
+                font-size:14px;
+                font-weight:bold;
+                letter-spacing:1px;
+                line-height:24px;
+                margin:auto;
+                font-family:Verdana, Geneva, sans-serif;
+            }
+            #box, table, #countryList {
+                margin:15px;
+            }
+
+            #imageContainer {
+                width:70px;
+                height: 60px;
+                display:none;
+            }
+            
+        </style>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+
+            function buildTableString(record) {
+                return "<td>" + record.championID + "</td>" +
+                        "<td>" + record.championName + "</td>" +
+                        "<td><img src=" + record.img + "></img></td>" +
+                        "<td>" + record.releaseDate + "</td>" +
+                        "<td>" + record.releaseNum + "</td>";
+            }
+
+            $(document).ready(function ()
+            {
+                $("#imageContainer").hide();
+                $('#championSearch').change(function () {
+                    console.log("function called");
+                });
+                $('#getButton').click(function () {
+
+                    $("#championTable").empty();
+
+                    var url = "webApi.jsp";
+                    url += "?q=" + $("#championSearch").val();
+                    console.log(url);
+
+                    ajaxSuccess = function (response) {
+                        console.log("Success");
+                        var obj = eval(response);
+                        var tableString = "<table>";
+                        if (obj.recordList.length === 0) {
+                            $("#championTable").append("No Champions Match Your Search");
+                        } else {
+                            //Table construction
+                            tableString += "<th>Champion ID</th>" +
+                                    "<th>Champion</th>" +
+                                    "<th>Splash Art</th>" +
+                                    "<th>Release Date<th>" +
+                                    "<th>Release Number<th>";
+                            for (var i = 0; i < obj.recordList.length; i++) {
+                                console.log(obj.recordList[i]);
+                                tableString += "<tr>" + buildTableString(obj.recordList[i]) + "</tr>";
+                            }
+                            tableString += "</table>";
+
+                            console.log("Table tag:" + tableString);
+                            $("#championTable").append(tableString);
+
+                        }
+                    };
+
+                    ajaxError = function () {
+                        alert("Unable to retrieve data.");
+                    };
+
+
+                    $.ajax(
+                            {
+                                type: "GET",
+                                cache: false,
+                                url: url,
+                                dataType: "json",
+                                timeout: 500, // 500 milliseconds
+                                success: ajaxSuccess,
+                                error: ajaxError
+                            }); //end of $.ajax
+
+                }); // end of click function
+
+            }); // end of document ready function
+
+        </script>
+
+    </head>
+    <body>
+        <div id="box">
+            <h1>Get LoL Champions</h1>
+
+            <br/><br/>Enter starting characters of champion for search, for example
+            <input type="text" id="championSearch" value="A" size="30" />
+            <input type="button" value="Get Champions" id="getButton"/>
+            <br/>
+            <div id="databaseError"></div>
+            <div id="championTable"></div>  
+        </div>
+</html>
